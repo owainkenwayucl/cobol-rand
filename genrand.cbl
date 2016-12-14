@@ -15,8 +15,6 @@
           
        PROCEDURE DIVISION.
 
-       BEGIN.
-
       *> Print a heading for our table (makes life in R better).
            DISPLAY "r"
            PERFORM samples TIMES
@@ -24,4 +22,4 @@
                DISPLAY r
            END-PERFORM
 
-       GOBACK. 
+           GOBACK. 
