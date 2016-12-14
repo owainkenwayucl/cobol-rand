@@ -1,9 +1,9 @@
 # cobol-rand
 Experiment showing that Ubuntu Xenial's open-cobol package has a broken RNG.
 
-One of the things I sometimes like to do with a new programming language is play with generating Pi by various methods.  Since Dr Kirker had already implementend our [canonical Pi exmaple](https://github.com/UCL-RITS/pi_examples/blob/master/cobol_pi_dir/cobol_pi.cbl) I thought I'd do the Monte Carlo version in COBOL.  Unfortunately, I discovered a really interesting bug with the Open Cobol compiler provided as part of the Ubuntu Xenial Universe packages:
+One of the things I sometimes like to do with a new programming language is play with generating Pi by various methods.  Since Dr Kirker had already implementend our [canonical Pi example](https://github.com/UCL-RITS/pi_examples/blob/master/cobol_pi_dir/cobol_pi.cbl) I thought I'd do the Monte Carlo version in COBOL.  Unfortunately, I discovered a really interesting bug with the Open Cobol compiler provided as part of the Ubuntu Xenial Universe packages:
 
-```bash
+```
 $ dpkg -s open-cobol
 Package: open-cobol
 Status: install ok installed
@@ -31,7 +31,7 @@ This bug results in the [RANDOM](http://www.ibm.com/support/knowledgecenter/en/S
 
 To show how bad it is, I've written a short COBOL program to generate 10,000,000 random numbers and then used R to plot them.  All the code is provided in this repository.  You can either build/run it by hand, or more simply if you have a system with GNU make installed, just run `make`.
 
-```bash
+```
 $ make
 cobc -o genrand.exe -x -free genrand.cbl
 ./genrand.exe > genrand.out
