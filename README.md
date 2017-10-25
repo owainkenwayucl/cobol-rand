@@ -35,7 +35,13 @@ To show how bad it is, I've written a short COBOL program to generate 10,000,000
 $ make
 cobc -o genrand.exe -x -free genrand.cbl
 ./genrand.exe > genrand.out
-Rscript plot.R
+Rscript plot.R genrand.out hist.png
+null device 
+          1 
+gfortran -c cobsupport.f
+cobc -g -o fortrand.exe -x -free fortrand.cbl cobsupport.o -lgfortran
+./fortrand.exe > genfort.out
+Rscript plot.R genfort.out histfort.png
 null device 
           1 
 ```
@@ -45,3 +51,7 @@ This wil compile the code with `cobc` and then use R to plot a `histogram.png` l
 ![Histogram of output of COBOL RANDOM function](histogram.png)
 
 As we can see, the skew towards lower values is pretty spectacular.  The net result is that if you are using the compiler that comes out of the Ubuntu repos, you should probably link to C (or better Fortran!) to do your random number generation.
+
+The histogram below shows what happens when you call Fortran's `rand()`.
+
+![Histogram of output of Fortran's rand function](histogramf.png)
